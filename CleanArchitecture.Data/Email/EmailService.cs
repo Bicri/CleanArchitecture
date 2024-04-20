@@ -17,15 +17,18 @@ public class EmailService : IEmailService
     {
         _emailSettings = emailSettings.Value;
         _logger = logger;
-        _logger.LogError($"Token: {_emailSettings.Token}");
     }
 
     public async Task<bool> SendEmail(Application.Models.Email email)
     {
-        var x = _emailSettings.Url;
         email.From.Email = _emailSettings.FromAddress;
 
-        string data = JsonSerializer.Serialize(email);
+        var options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        };
+
+        string data = JsonSerializer.Serialize(email, options);
 
         using var client = new HttpClient();
 

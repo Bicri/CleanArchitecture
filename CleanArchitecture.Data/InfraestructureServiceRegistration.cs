@@ -19,7 +19,7 @@ public static class InfraestructureServiceRegistration
             options.UseSqlServer(configuration.GetConnectionString("ConnectionString"));
         }); 
 
-        services.Configure<EmailSettings>(c => configuration.GetSection("EmailSettings"));
+        services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
         services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
         services.AddScoped<IVideoRepository, VideoRepository>();

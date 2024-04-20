@@ -42,7 +42,7 @@ public class CreateStreamerCommandHandler : IRequestHandler<CreateStreamerComman
         {
             To = new List<DireccionEmail>() { new DireccionEmail { Email = "isaac.bicri@gmail.com" } },
             html = "La compañia de streamer se creó correctamente",
-            Subject = "Mensaje de alerta"
+            Subject = "Creación de streamer"
         };
 
         try
@@ -51,7 +51,7 @@ public class CreateStreamerCommandHandler : IRequestHandler<CreateStreamerComman
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error enviando el email de {streamer.Id}");
+            _logger.LogError($"Error enviando el email de {streamer.Id} - {ex.Message}");
         }
     }
 }
