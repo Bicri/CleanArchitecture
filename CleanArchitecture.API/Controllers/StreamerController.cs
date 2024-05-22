@@ -2,6 +2,7 @@
 using CleanArchitecture.Application.Features.Streamers.Command.DeleteStreamer;
 using CleanArchitecture.Application.Features.Streamers.Command.UpdateStreamer;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -19,6 +20,7 @@ public class StreamerController : ControllerBase
     }
 
     [HttpPost("CreateStreamer")]
+    [Authorize(Roles = "Administrator")]
     [ProducesResponseType( StatusCodes.Status200OK )]
     public async Task<ActionResult<int>> CreateStreamer([FromBody] CreateStreamerCommand command)
     {
