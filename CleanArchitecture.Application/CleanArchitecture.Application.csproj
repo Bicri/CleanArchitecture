@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Directors\Commands\" />
+    <Folder Include="Features\Directors\Queries\DeleteDirector\" />
+    <Folder Include="Features\Directors\Queries\UpdateDirector\" />
     <Folder Include="Features\Streamers\Queries\" />
     <Folder Include="Features\Videos\Commands\" />
   </ItemGroup>

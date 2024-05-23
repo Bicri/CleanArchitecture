@@ -17,15 +17,18 @@ public static class InfraestructureServiceRegistration
         services.AddDbContext<StreamerDbContext>(options =>
         {
             options.UseSqlServer(configuration.GetConnectionString("ConnectionString"));
-        }); 
+        });
 
         services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
+        services.AddTransient<IEmailService, EmailService>();
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
         services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
         services.AddScoped<IVideoRepository, VideoRepository>();
         services.AddScoped<IStreamerRepository, StreamerRepository>();
 
-        services.AddTransient<IEmailService, EmailService>();
 
         return services;
     }
