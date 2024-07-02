@@ -50,14 +50,14 @@ internal class AuthService : IAuthService
 
     public async Task<RegistrationResponse> Register(RegistrationRequest registrationRequest)
     {
-        var existingUser = _userManager.FindByNameAsync(registrationRequest.Username);
+        var existingUser = await _userManager.FindByNameAsync(registrationRequest.Username);
 
         if(existingUser is not null)
         {
            throw new Exception($"El usuario con nombre {registrationRequest.Username} ya existe");
         }
 
-        var existingEmail = _userManager.FindByEmailAsync(registrationRequest.Email);
+        var existingEmail = await _userManager.FindByEmailAsync(registrationRequest.Email);
 
         if(existingEmail is not null)
         {
@@ -80,7 +80,7 @@ internal class AuthService : IAuthService
             throw new Exception($"{result.Errors}");
         }
 
-        await _userManager.AddToRoleAsync(user, "Operator");
+        await _userManager.AddToRoleAsync(user, "Administrator");
 
         var token = await GenerateToken(user);
 

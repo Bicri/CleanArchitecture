@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Features.Directors.Queries.CreateDirector;
 using CleanArchitecture.Application.Features.Streamers.Command.CreateStreamer;
+using CleanArchitecture.Application.Features.Streamers.Command.UpdateStreamer;
 using CleanArchitecture.Application.Features.Videos.Queries.GetVideosList;
 using CleanArchitecture.Domain;
 
@@ -12,6 +13,7 @@ public class MappingProfile : Profile
     {
         CreateMap<Video, VideosVm>();
         CreateMap<CreateStreamerCommand, Streamer>();
+        CreateMap<UpdateStreamerCommand, Streamer>();
         CreateMap<CreateDirectorCommand, Director>();
     }
 }

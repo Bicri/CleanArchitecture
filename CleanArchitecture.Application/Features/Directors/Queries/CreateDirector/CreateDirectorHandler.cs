@@ -21,6 +21,10 @@ public class CreateDirectorHandler : IRequestHandler<CreateDirectorCommand, int>
 
     public async Task<int> Handle(CreateDirectorCommand request, CancellationToken cancellationToken)
     {
+        /*
+            NOTA: Un video solo puede estar relacionado a un director, por lo que si se intenta agrgar un director con un video que ya tiene un director asignado,
+            se lanzará una excepción.
+         */
         var directorEntity = _mapper.Map<Director>(request);
 
         _unitOfWork.Repository<Director>().AddEntity(directorEntity);
